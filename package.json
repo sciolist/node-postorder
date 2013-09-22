@@ -1,8 +1,12 @@
 {
   "name": "postorder",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Bare minimum postgres work queue",
   "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sciolist/postorder.git"
+  },
   "dependencies": {
     "pg": "~2.0.0"
   },
