@@ -1,0 +1,11 @@
+{
+  "name": "postorder",
+  "version": "0.0.1",
+  "description": "Bare minimum postgres work queue",
+  "main": "index.js",
+  "dependencies": {
+    "pg": "~2.0.0"
+  },
+  "author": "Daniel Pihlstrom",
+  "license": "BSD"
+}
