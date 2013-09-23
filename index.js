@@ -29,7 +29,7 @@ Postorder.prototype.connect = function(cb) {
   function connected(client, done) {
     if(self.setupComplete) return cb(null, client, done);
     client.query(setupQuery, errback(cb, function () {
-      this.setupComplete = true;
+      self.setupComplete = true;
       cb(null, client, done);
     }));
   }
