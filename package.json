@@ -1,6 +1,6 @@
 {
   "name": "postorder",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Bare minimum postgres work queue",
   "main": "index.js",
   "repository": {
