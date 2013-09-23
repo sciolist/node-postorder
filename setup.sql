@@ -8,15 +8,15 @@ CREATE TABLE IF NOT EXISTS postorder.work
 )
 WITH ( OIDS = FALSE );
 
-CREATE OR REPLACE FUNCTION postorder_work_fn() RETURNS trigger AS $$
+CREATE OR REPLACE FUNCTION postorder.work_fn() RETURNS trigger AS $$
 DECLARE
 BEGIN
-  NOTIFY postorder_work;
+  NOTIFY postorder__work;
   RETURN NEW;
 END;
 $$ LANGUAGE plpgsql;
 
-CREATE OR REPLACE FUNCTION postorder_work_fetch() RETURNS json AS $$
+CREATE OR REPLACE FUNCTION postorder.work_fetch() RETURNS json AS $$
 DECLARE
   work_id numeric;
   work_msg json;
@@ -28,8 +28,8 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-DROP TRIGGER IF EXISTS postorder_work_notify ON postorder.work;
-CREATE TRIGGER postorder_work_notify
+DROP TRIGGER IF EXISTS postorder__work_notify ON postorder.work;
+CREATE TRIGGER postorder__work_notify
   AFTER INSERT ON postorder.work
-  EXECUTE PROCEDURE postorder_work_fn();
+  EXECUTE PROCEDURE postorder.work_fn();
 

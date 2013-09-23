@@ -52,7 +52,7 @@ Postorder.prototype.shift = function fetch(cb) {
   var self = this;
 
   this.connect(errback(cb, function (client, done) {
-    client.query('SELECT postorder_work_fetch() AS msg;', function (err, value) {
+    client.query('SELECT postorder.work_fetch() AS msg;', function (err, value) {
       done();
 
       if(err) return cb(err);
@@ -78,7 +78,7 @@ Postorder.prototype.listen = function listen(cb) {
     client = inClient; done = inDone;
     self.shift(msg);
     client.on('notification', self.shift.bind(self, msg));
-    client.query('LISTEN postorder_work', errback(cb));
+    client.query('LISTEN postorder__work', errback(cb));
   }
 };
 
