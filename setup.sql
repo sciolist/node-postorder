@@ -1,3 +1,5 @@
+BEGIN;
+
 CREATE SCHEMA IF NOT EXISTS postorder;
 CREATE TABLE IF NOT EXISTS postorder.work
 (
@@ -7,6 +9,7 @@ CREATE TABLE IF NOT EXISTS postorder.work
   CONSTRAINT "postorder.work.pk" PRIMARY KEY (id)
 )
 WITH ( OIDS = FALSE );
+LOCK postorder.work IN EXCLUSIVE MODE;
 
 CREATE OR REPLACE FUNCTION postorder.work_fn() RETURNS trigger AS $$
 DECLARE
@@ -32,4 +35,6 @@ DROP TRIGGER IF EXISTS postorder__work_notify ON postorder.work;
 CREATE TRIGGER postorder__work_notify
   AFTER INSERT ON postorder.work
   EXECUTE PROCEDURE postorder.work_fn();
+
+COMMIT;
 
